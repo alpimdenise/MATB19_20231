@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cmath>
+
+const int N = 8; // Tamanho da matriz
+
+void calculateDCT(int X[N][N], double DCT[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            double sum_dct = 0;
+            for (int m = 0; m < N; m++) {
+                for (int n = 0; n < N; n++) {
+                    double c_i = (i == 0) ? 1 / sqrt(2) : 1;
+                    double c_j = (j == 0) ? 1 / sqrt(2) : 1;
+                    double cos_i = cos((2 * m + 1) * M_PI / (2 * N));
+                    double cos_j = cos((2 * n + 1) * M_PI / (2 * N));
+                    sum_dct += c_i * c_j * X[m][n] * cos_i * cos_j;
+                }
+            }
+            DCT[i][j] = 0.25 * sum_dct;
+        }
+    }
+}
+
+void printMatrix(double matrix[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    int X[N][N] = {
+        {16, 11, 10, 16, 24, 40, 51, 61},
+        {12, 12, 14, 19, 26, 58, 60, 65},
+        {14, 13, 16, 24, 40, 57, 69, 56},
+        {14, 17, 22, 29, 51, 87, 80, 62},
+        {18, 22, 37, 56, 68, 109, 103, 77},
+        {24, 35, 55, 64, 81, 104, 113, 92},
+        {49, 64, 78, 87, 103, 121, 120, 101},
+        {72, 92, 95, 98, 112, 100, 103, 99}
+    };
+
+    double DCT[N][N];
+
+    calculateDCT(X, DCT);
+
+    std::cout << "DCT:" << std::endl;
+    printMatrix(DCT);
+
+    return 0;
+}
