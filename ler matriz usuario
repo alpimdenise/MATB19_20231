@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int linhas, colunas;
+
+    // Solicita ao usuário o tamanho da matriz
+    cout << "Digite o número de linhas da matriz: ";
+    cin >> linhas;
+    cout << "Digite o número de colunas da matriz: ";
+    cin >> colunas;
+
+    // Cria uma matriz vazia com o tamanho fornecido
+    vector<vector<int>> matriz(linhas, vector<int>(colunas));
+
+    // Lê os elementos da matriz do usuário
+    cout << "Digite os elementos da matriz:\n";
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            cout << "Elemento [" << i << "][" << j << "]: ";
+            cin >> matriz[i][j];
+        }
+    }
+
+    // Imprime a matriz lida
+    cout << "\nMatriz digitada:\n";
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            cout << matriz[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
